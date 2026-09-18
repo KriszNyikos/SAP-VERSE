@@ -18,5 +18,25 @@
   "private": true,
   "imports": {
     "#cds-models/*": "./@cds-models/*/index.js"
+  },
+  "cds": {
+    "requires": {
+      "auth": {
+        "users": {
+          "alice": {
+            "planetCode": "MRS",
+            "roles": [
+              "SpacefarerUser"
+            ]
+          },
+          "bob": {
+            "planetCode": "STRN",
+            "roles": [
+              "SpacefarerUser"
+            ]
+          }
+        }
+      }
+    }
   }
 }

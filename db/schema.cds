@@ -13,7 +13,10 @@ entity SpaceFarers: cuid, managed {
 
 entity Planets: cuid {
         name : String;
+        code : String;
 }
+
+annotate Planets with @assert.unique: { code: [code] };
 
 entity Departments: cuid, managed {
         name : String;
