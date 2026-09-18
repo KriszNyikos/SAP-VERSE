@@ -21,18 +21,36 @@
   },
   "cds": {
     "requires": {
+      "db": {
+        "kind": "sqlite",
+        "credentials": {
+          "url": "db/galactic.db"
+        }
+      },
       "auth": {
         "users": {
           "alice": {
-            "planetCode": "MRS",
+            "attr": {
+              "planetCode": "MARS"
+            },
             "roles": [
-              "SpacefarerUser"
+              "Analyst"
             ]
           },
           "bob": {
-            "planetCode": "STRN",
+            "attr": {
+              "planetCode": "EARTH"
+            },
             "roles": [
-              "SpacefarerUser"
+              "Analyst"
+            ]
+          },
+          "luke": {
+            "attr": {
+              "planetCode": "SATURN"
+            },
+            "roles": [
+              "Analyst"
             ]
           }
         }

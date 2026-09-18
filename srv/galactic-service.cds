@@ -4,7 +4,7 @@ using {galactic.adventure as db} from '../db/schema';
 service GalacticService {
 
     @restrict: [
-        { grant: ['READ', 'CREATE', 'UPDATE', 'DELETE'], to: 'SpacefarerUser', where: 'originPlanet.code = $user.planetCode' }
+        { grant: ['READ', 'CREATE', 'UPDATE', 'DELETE'], to: 'Analyst', where: 'originPlanet.code = $user.planetCode' }
     ]
     entity SpaceFarers as projection on db.SpaceFarers;
 
