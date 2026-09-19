@@ -1,3 +1,8 @@
-ID,name
-7a777777-7777-7777-7777-777777777777,Spaceship Captain
-8b888888-8888-8888-8888-888888888888,Astrophysicist
+ID,name,department_ID
+spaceship_captain_nav_earth,Spaceship Captain,navigation_earth
+spaceship_captain_nav_mars,Spaceship Captain,navigation_mars
+spaceship_captain_nav_saturn,Spaceship Captain,navigation_saturn
+engineer_nav_saturn,Engineer,navigation_saturn
+astrophysicist_stardust_research_mars,Astrophysicist,stardust_research_mars
+astrophysicist_stardust_research_earth,Astrophysicist,stardust_research_earth
+medical_officer_medical_saturn,Medical Officer,medical_saturn
