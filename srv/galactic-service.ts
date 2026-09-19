@@ -13,10 +13,6 @@ export default class GalacticService extends cds.ApplicationService {
           return req.error(400, "position must be set during creation");
         }
 
-        if (!req.data.department_ID) {
-          return req.error(400, "department must be set during creation");
-        }
-
         if (
           req.data.stardustCollection != null &&
           req.data.stardustCollection < 0
@@ -41,6 +37,14 @@ export default class GalacticService extends cds.ApplicationService {
         }
 
         req.data.originPlanet_ID = originPlanet.ID;
+
+        const position = await SELECT.one
+          .from("galactic.adventure.Positions")
+          .where({ ID: req.data.position_ID, "department.planet_ID": originPlanet.ID });
+
+        if (position === undefined) {
+          return req.error(400, "Position not found");
+        }
       },
     );
 

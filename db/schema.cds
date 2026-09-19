@@ -7,7 +7,6 @@ entity SpaceFarers: cuid, managed {
         wormholeNavigation : Integer @assert.range: [0,10] default 5;
         originPlanet       : Association to Planets;
         position           : Association to Positions;
-        department         : Association to Departments;
         spaceSuitColor     : SpaceSuitColor default 'WHITE';
 }
 
@@ -20,11 +19,16 @@ annotate Planets with @assert.unique: { code: [code] };
 
 entity Departments: cuid, managed {
         name : String;
+        planet : Association to Planets;
 }
+
+annotate Departments with @assert.unique: { name: [name, planet] };
 
 entity Positions: cuid {
         name : String;
+        department  : Association to Departments;
 }
+annotate Positions with @assert.unique: { name: [name, department] };
 
 type SpaceSuitColor : String enum {
     RED;
