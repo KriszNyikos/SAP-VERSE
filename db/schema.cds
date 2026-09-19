@@ -3,12 +3,12 @@ using { cuid, managed } from '@sap/cds/common';
 namespace galactic.adventure;
 
 entity SpaceFarers: cuid, managed {
-        stardustCollection : Integer;
-        wormholeNavigation : Integer @assert.range: [0,10];
+        stardustCollection : Integer default 0;
+        wormholeNavigation : Integer @assert.range: [0,10] default 5;
         originPlanet       : Association to Planets;
         position           : Association to Positions;
         department         : Association to Departments;
-        spaceSuitColor     : SpaceSuitColor;
+        spaceSuitColor     : SpaceSuitColor default 'WHITE';
 }
 
 entity Planets: cuid {
