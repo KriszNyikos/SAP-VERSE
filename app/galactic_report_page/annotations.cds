@@ -1,6 +1,11 @@
 using GalacticService as service from '../../srv/galactic-service';
 
 annotate service.SpaceFarers with @(
+    UI.SelectionFields           : [
+        stardustCollection,
+        wormholeNavigation,
+        spaceSuitColor,
+    ],
     UI.FieldGroup #GeneratedGroup: {
         $Type: 'UI.FieldGroupType',
         Data : [
