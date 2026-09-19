@@ -1,8 +1,8 @@
 ID,name,department_ID
-spaceship_captain_nav_earth,Spaceship Captain,navigation_earth
-spaceship_captain_nav_mars,Spaceship Captain,navigation_mars
-spaceship_captain_nav_saturn,Spaceship Captain,navigation_saturn
-engineer_nav_saturn,Engineer,navigation_saturn
-astrophysicist_stardust_research_mars,Astrophysicist,stardust_research_mars
-astrophysicist_stardust_research_earth,Astrophysicist,stardust_research_earth
-medical_officer_medical_saturn,Medical Officer,medical_saturn
+11111111-0001-4111-8111-111111111111,Spaceship Captain,11111111-aaaa-4111-8111-111111111111
+22222222-0001-4222-8222-222222222222,Spaceship Captain,22222222-aaaa-4222-8222-222222222222
+33333333-0001-4333-8333-333333333333,Spaceship Captain,33333333-aaaa-4333-8333-333333333333
+33333333-0002-4333-8333-333333333333,Engineer,33333333-aaaa-4333-8333-333333333333
+22222222-0003-4222-8222-222222222222,Astrophysicist,22222222-bbbb-4222-8222-222222222222
+11111111-0003-4111-8111-111111111111,Astrophysicist,11111111-bbbb-4111-8111-111111111111
+33333333-0004-4333-8333-333333333333,Medical Officer,33333333-bbbb-4333-8333-333333333333

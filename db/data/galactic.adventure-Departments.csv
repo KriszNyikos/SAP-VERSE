@@ -1,7 +1,7 @@
 ID,name,planet_ID
-navigation_earth,Navigation Department,earth
-navigation_mars,Navigation Department,mars
-navigation_saturn,Navigation Department,saturn
-stardust_research_earth,Stardust Research Group,earth
-stardust_research_mars,Stardust Research Group,mars
-medical_saturn,Medical Department,saturn
+11111111-aaaa-4111-8111-111111111111,Navigation Department,11111111-1111-4111-8111-111111111111
+22222222-aaaa-4222-8222-222222222222,Navigation Department,22222222-2222-4222-8222-222222222222
+33333333-aaaa-4333-8333-333333333333,Navigation Department,33333333-3333-4333-8333-333333333333
+11111111-bbbb-4111-8111-111111111111,Stardust Research Group,11111111-1111-4111-8111-111111111111
+22222222-bbbb-4222-8222-222222222222,Stardust Research Group,22222222-2222-4222-8222-222222222222
+33333333-bbbb-4333-8333-333333333333,Medical Department,33333333-3333-4333-8333-333333333333
