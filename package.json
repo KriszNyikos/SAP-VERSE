@@ -13,7 +13,10 @@
     "@cap-js/cds-typer": ">=0.1"
   },
   "scripts": {
-    "start": "cds-serve"
+    "start": "cds-serve",
+    "watch": "cds watch",
+    "build:types": "cds build --for typescript",
+    "typecheck": "npm run build:types && tsc --noEmit"
   },
   "private": true,
   "imports": {
