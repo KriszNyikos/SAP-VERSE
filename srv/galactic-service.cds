@@ -6,6 +6,7 @@ service GalacticService {
     @restrict: [
         { grant: ['READ', 'CREATE', 'UPDATE', 'DELETE'], to: 'Analyst', where: 'originPlanet.code = $user.planetCode' }
     ]
+    @odata.draft.enabled
     entity SpaceFarers as projection on db.SpaceFarers;
 
     @readonly
