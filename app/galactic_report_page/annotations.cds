@@ -1,8 +1,14 @@
 using GalacticService as service from '../../srv/galactic-service';
 
+annotate service.SpaceFarers with {
+    stardustCollection @title: 'Stardust Collection';
+    wormholeNavigation @title: 'Wormhole Navigation';
+    spaceSuitColor     @title: 'Space Suit Color';
+};
+
 annotate service.SpaceFarers with @(
     UI.SelectionFields           : [
-        stardustCollection,
+        stardustCollection ,
         wormholeNavigation,
         spaceSuitColor,
     ],
@@ -11,17 +17,14 @@ annotate service.SpaceFarers with @(
         Data : [
             {
                 $Type: 'UI.DataField',
-                Label: 'stardustCollection',
                 Value: stardustCollection,
             },
             {
                 $Type: 'UI.DataField',
-                Label: 'wormholeNavigation',
                 Value: wormholeNavigation,
             },
             {
                 $Type: 'UI.DataField',
-                Label: 'spaceSuitColor',
                 Value: spaceSuitColor,
             },
         ],
