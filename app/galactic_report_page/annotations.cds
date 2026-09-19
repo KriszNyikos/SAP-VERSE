@@ -8,7 +8,7 @@ annotate service.SpaceFarers with {
 
 annotate service.SpaceFarers with @(
     UI.SelectionFields           : [
-        stardustCollection ,
+        stardustCollection,
         wormholeNavigation,
         spaceSuitColor,
     ],
@@ -26,6 +26,21 @@ annotate service.SpaceFarers with @(
             {
                 $Type: 'UI.DataField',
                 Value: spaceSuitColor,
+            },
+            {
+                $Type: 'UI.DataField',
+                Label: 'Origin Planet',
+                Value: originPlanet.name,
+            },
+            {
+                $Type: 'UI.DataField',
+                Label: 'Position',
+                Value: position.name,
+            },
+            {
+                $Type: 'UI.DataField',
+                Label: 'Department',
+                Value: position.department.name,
             },
         ],
     },
@@ -50,6 +65,21 @@ annotate service.SpaceFarers with @(
             $Type: 'UI.DataField',
             Label: 'Space Suit Color',
             Value: spaceSuitColor,
+        },
+        {
+            $Type: 'UI.DataField',
+            Label: 'Origin Planet',
+            Value: originPlanet.name,
+        },
+        {
+            $Type: 'UI.DataField',
+            Label: 'Position',
+            Value: position.name,
+        },
+        {
+            $Type: 'UI.DataField',
+            Label: 'Department',
+            Value: position.department.name,
         },
     ],
 );
