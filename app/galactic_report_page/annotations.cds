@@ -1,10 +1,11 @@
 using GalacticService as service from '../../srv/galactic-service';
 
 annotate service.SpaceFarers with {
+    name               @title: 'Name';
     stardustCollection @title: 'Stardust Collection';
     wormholeNavigation @title: 'Wormhole Navigation';
     spaceSuitColor     @title: 'Space Suit Color';
-    position @title: 'Position';
+    position           @title: 'Position';
 };
 
 annotate service.SpaceFarers with @(
@@ -19,6 +20,10 @@ annotate service.SpaceFarers with @(
         Data : [
             {
                 $Type: 'UI.DataField',
+                Value: name,
+            },
+            {
+                $Type: 'UI.DataField',
                 Value: stardustCollection,
             },
             {
@@ -31,7 +36,19 @@ annotate service.SpaceFarers with @(
             },
             {
                 $Type: 'UI.DataField',
+                Label: 'Position ID',
                 Value: position_ID,
+            },
+            {
+                $Type: 'UI.DataField',
+                Label: 'Position name',
+                Value: position.name,
+                @Common.FieldControl: #ReadOnly
+            },
+            {
+                $Type: 'UI.DataField',
+                Label: 'Department name',
+                Value: position.department.name,
             },
             {
                 $Type: 'UI.DataField',
@@ -47,6 +64,11 @@ annotate service.SpaceFarers with @(
         Target: '@UI.FieldGroup#GeneratedGroup',
     }, ],
     UI.LineItem                  : [
+        {
+            $Type: 'UI.DataField',
+            Label: 'Name',
+            Value: name,
+        },
         {
             $Type: 'UI.DataField',
             Label: 'Stardust Collection',
@@ -122,16 +144,16 @@ annotate service.SpaceFarers with {
 
 annotate service.SpaceFarers with {
     spaceSuitColor @Common.ValueList: {
-        $Type: 'Common.ValueListType',
+        $Type         : 'Common.ValueListType',
         CollectionPath: 'SpaceSuitColors',
-        Parameters: [
+        Parameters    : [
             {
-                $Type: 'Common.ValueListParameterInOut',
+                $Type            : 'Common.ValueListParameterInOut',
                 LocalDataProperty: spaceSuitColor,
                 ValueListProperty: 'code',
             },
             {
-                $Type: 'Common.ValueListParameterDisplayOnly',
+                $Type            : 'Common.ValueListParameterDisplayOnly',
                 ValueListProperty: 'name',
             },
         ],

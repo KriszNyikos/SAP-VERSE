@@ -3,7 +3,8 @@ using { cuid, managed } from '@sap/cds/common';
 namespace galactic.adventure;
 
 entity SpaceFarers: cuid, managed {
-        stardustCollection : Integer default 0;
+        name : String;
+        stardustCollection : Integer default 0 ;
         wormholeNavigation : Integer @assert.range: [0,10] default 5;
         originPlanet       : Association to Planets;
         position           : Association to Positions;
