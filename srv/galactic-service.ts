@@ -1,5 +1,9 @@
 import cds from "@sap/cds";
 import { SpaceFarer } from "#cds-models/GalacticService";
+import {
+  validateSpaceFarerCreate,
+  validateSpaceFarerUpdate,
+} from "./galactic-validation";
 
 const LOG = cds.log("galactic-service");
 
@@ -9,55 +13,7 @@ export default class GalacticService extends cds.ApplicationService {
       "CREATE",
       "SpaceFarers",
       async (req: cds.Request<SpaceFarer>) => {
-        if (!req.data.position_ID) {
-          return req.error(400, "position must be set during creation");
-        }
-
-        if (
-          req.data.stardustCollection != null &&
-          req.data.stardustCollection < 0
-        ) {
-          return req.error(400, "stardustCollection must be non-negative");
-        }
-
-        if (
-          req.data.wormholeNavigation != null &&
-          (req.data.wormholeNavigation < 0 || req.data.wormholeNavigation > 10)
-        ) {
-          return req.error(400, "wormholeNavigation must be between 0 and 10");
-        }
-
-        const spaceSuitRows = await SELECT.from("galactic.adventure.SpaceSuitColors").columns("code");
-        const allowedSpaceSuitColors = spaceSuitRows.map((row: { code: string }) => row.code);
-
-        if (
-          !req.data.spaceSuitColor ||
-          !allowedSpaceSuitColors.includes(req.data.spaceSuitColor)
-        ) {
-          return req.error(400, "Invalid spaceSuitColor");
-        }
-
-        const userPlanetCode = req.user.attr.planetCode;
-        const originPlanet = await SELECT.one
-          .from("galactic.adventure.Planets")
-          .where({ code: userPlanetCode });
-
-        if (originPlanet === undefined) {
-          return req.error(400, "Origin planet not found for the user");
-        }
-
-        req.data.originPlanet_ID = originPlanet.ID;
-
-        const position = await SELECT.one
-          .from("galactic.adventure.Positions")
-          .where({
-            ID: req.data.position_ID,
-            "department.planet_ID": originPlanet.ID,
-          });
-
-        if (position === undefined) {
-          return req.error(400, "Position not found");
-        }
+        return validateSpaceFarerCreate(req);
       },
     );
 
@@ -65,32 +21,10 @@ export default class GalacticService extends cds.ApplicationService {
       LOG.info(`Cosmic notification sent for Spacefarer ${data.ID}`);
     });
 
-    this.before('UPDATE', 'SpaceFarers', async (req: cds.Request<SpaceFarer>) => {
+    this.before("UPDATE", "SpaceFarers", validateSpaceFarerUpdate);
 
-      if (req.data.stardustCollection != null && req.data.stardustCollection < 0) {
-        return req.error(400, "stardustCollection must be non-negative");
-      }
-
-      if (
-        req.data.wormholeNavigation != null &&
-        (req.data.wormholeNavigation < 0 || req.data.wormholeNavigation > 10)
-      ) {
-        return req.error(400, "wormholeNavigation must be between 0 and 10");
-      }
-
-      const spaceSuitRows = await SELECT.from("galactic.adventure.SpaceSuitColors").columns("code");
-      const allowedSpaceSuitColors = spaceSuitRows.map((row: { code: string }) => row.code);
-
-      if (
-        req.data.spaceSuitColor &&
-        !allowedSpaceSuitColors.includes(req.data.spaceSuitColor)
-      ) {
-        return req.error(400, "Invalid spaceSuitColor");
-      }
-    });
-
-    this.before("DELETE", "SpaceFarers", (req: cds.Request<SpaceFarer>) => {
-      LOG.info(`See you space cowboy ... ${req.data.ID}`);
+    this.after("DELETE", "SpaceFarers", (data) => {
+      LOG.info(`See you space cowboy ... ${data.ID}`);
     });
 
     return super.init();

@@ -22,7 +22,15 @@ service GalacticService {
     @readonly
     entity Departments     as projection on db.Departments;
 
-    @readonly
+    @restrict: [{
+        grant: [
+            'READ',
+            'CREATE',
+            'UPDATE'
+        ],
+        to   : 'Analyst',
+        where: 'department.planet.code = $user.planetCode'
+    }]
     entity Positions       as projection on db.Positions;
 
     @readonly

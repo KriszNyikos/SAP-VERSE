@@ -4,6 +4,7 @@ annotate service.SpaceFarers with {
     stardustCollection @title: 'Stardust Collection';
     wormholeNavigation @title: 'Wormhole Navigation';
     spaceSuitColor     @title: 'Space Suit Color';
+    position @title: 'Position';
 };
 
 annotate service.SpaceFarers with @(
@@ -11,6 +12,7 @@ annotate service.SpaceFarers with @(
         stardustCollection,
         wormholeNavigation,
         spaceSuitColor,
+        position,
     ],
     UI.FieldGroup #GeneratedGroup: {
         $Type: 'UI.FieldGroupType',
@@ -29,18 +31,12 @@ annotate service.SpaceFarers with @(
             },
             {
                 $Type: 'UI.DataField',
+                Value: position_ID,
+            },
+            {
+                $Type: 'UI.DataField',
                 Label: 'Origin Planet',
                 Value: originPlanet.name,
-            },
-            {
-                $Type: 'UI.DataField',
-                Label: 'Position',
-                Value: position.name,
-            },
-            {
-                $Type: 'UI.DataField',
-                Label: 'Department',
-                Value: position.department.name,
             },
         ],
     },
