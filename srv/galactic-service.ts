@@ -89,6 +89,10 @@ export default class GalacticService extends cds.ApplicationService {
       }
     });
 
+    this.before("DELETE", "SpaceFarers", (req: cds.Request<SpaceFarer>) => {
+      LOG.info(`See you space cowboy ... ${req.data.ID}`);
+    });
+
     return super.init();
   }
 }
