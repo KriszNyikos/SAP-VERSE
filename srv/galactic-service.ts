@@ -24,7 +24,7 @@ export default class GalacticService extends cds.ApplicationService {
     this.before("UPDATE", "SpaceFarers", validateSpaceFarerUpdate);
 
     this.after("DELETE", "SpaceFarers", (data) => {
-      LOG.info(`See you space cowboy ... ${data.ID}`);
+      LOG.info('See you space cowboy ...');
     });
 
     return super.init();
