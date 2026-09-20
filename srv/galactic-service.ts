@@ -27,6 +27,16 @@ export default class GalacticService extends cds.ApplicationService {
           return req.error(400, "wormholeNavigation must be between 0 and 10");
         }
 
+        const spaceSuitRows = await SELECT.from("galactic.adventure.SpaceSuitColors").columns("code");
+        const allowedSpaceSuitColors = spaceSuitRows.map((row: { code: string }) => row.code);
+
+        if (
+          !req.data.spaceSuitColor ||
+          !allowedSpaceSuitColors.includes(req.data.spaceSuitColor)
+        ) {
+          return req.error(400, "Invalid spaceSuitColor");
+        }
+
         const userPlanetCode = req.user.attr.planetCode;
         const originPlanet = await SELECT.one
           .from("galactic.adventure.Planets")
@@ -40,7 +50,10 @@ export default class GalacticService extends cds.ApplicationService {
 
         const position = await SELECT.one
           .from("galactic.adventure.Positions")
-          .where({ ID: req.data.position_ID, "department.planet_ID": originPlanet.ID });
+          .where({
+            ID: req.data.position_ID,
+            "department.planet_ID": originPlanet.ID,
+          });
 
         if (position === undefined) {
           return req.error(400, "Position not found");
@@ -50,6 +63,30 @@ export default class GalacticService extends cds.ApplicationService {
 
     this.after("CREATE", "SpaceFarers", (data) => {
       LOG.info(`Cosmic notification sent for Spacefarer ${data.ID}`);
+    });
+
+    this.before('UPDATE', 'SpaceFarers', async (req: cds.Request<SpaceFarer>) => {
+
+      if (req.data.stardustCollection != null && req.data.stardustCollection < 0) {
+        return req.error(400, "stardustCollection must be non-negative");
+      }
+
+      if (
+        req.data.wormholeNavigation != null &&
+        (req.data.wormholeNavigation < 0 || req.data.wormholeNavigation > 10)
+      ) {
+        return req.error(400, "wormholeNavigation must be between 0 and 10");
+      }
+
+      const spaceSuitRows = await SELECT.from("galactic.adventure.SpaceSuitColors").columns("code");
+      const allowedSpaceSuitColors = spaceSuitRows.map((row: { code: string }) => row.code);
+
+      if (
+        req.data.spaceSuitColor &&
+        !allowedSpaceSuitColors.includes(req.data.spaceSuitColor)
+      ) {
+        return req.error(400, "Invalid spaceSuitColor");
+      }
     });
 
     return super.init();

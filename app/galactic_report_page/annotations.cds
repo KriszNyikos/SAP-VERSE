@@ -123,3 +123,21 @@ annotate service.SpaceFarers with {
         ],
     }
 };
+
+annotate service.SpaceFarers with {
+    spaceSuitColor @Common.ValueList: {
+        $Type: 'Common.ValueListType',
+        CollectionPath: 'SpaceSuitColors',
+        Parameters: [
+            {
+                $Type: 'Common.ValueListParameterInOut',
+                LocalDataProperty: spaceSuitColor,
+                ValueListProperty: 'code',
+            },
+            {
+                $Type: 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty: 'name',
+            },
+        ],
+    }
+};
