@@ -4,6 +4,7 @@ namespace galactic.adventure;
 
 entity SpaceFarers: cuid, managed {
         name : String;
+        email: String @assert.format: 'email';
         stardustCollection : Integer default 0 ;
         wormholeNavigation : Integer @assert.range: [0,10] default 5;
         originPlanet       : Association to Planets;
