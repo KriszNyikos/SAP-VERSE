@@ -67,6 +67,7 @@ The `Positions` value help is restricted in the same way. For example, when logg
 2. Choose **Edit**.
 3. Verify that these fields can be changed:
    - `Name`
+   - `Email`
    - `Stardust Collection`
    - `Wormhole Navigation`
    - `Space Suit Color`
