@@ -4,7 +4,7 @@ Welcome to your new CAP project.
 
 ## Galactic Spacefarer Adventure
 
-A CAP + SAP Fiori Elements application for managing spacefarer records. The application includes planet-based authorization, draft editing, position value help, and CREATE/UPDATE validation.
+A CAP + SAP Fiori Elements application for managing spacefarer records. The application includes planet-based authorization, draft editing, position value help, email validation, notifications, and CREATE/UPDATE validation.
 
 It contains these folders and files, following our recommended project layout:
 

@@ -2,6 +2,7 @@ using GalacticService as service from '../../srv/galactic-service';
 
 annotate service.SpaceFarers with {
     name               @title: 'Name';
+    email              @title: 'Email';
     stardustCollection @title: 'Stardust Collection';
     wormholeNavigation @title: 'Wormhole Navigation';
     spaceSuitColor     @title: 'Space Suit Color';
@@ -24,6 +25,10 @@ annotate service.SpaceFarers with @(
             },
             {
                 $Type: 'UI.DataField',
+                Value: email,
+            },
+            {
+                $Type: 'UI.DataField',
                 Value: stardustCollection,
             },
             {
@@ -40,9 +45,9 @@ annotate service.SpaceFarers with @(
                 Value: position_ID,
             },
             {
-                $Type: 'UI.DataField',
-                Label: 'Position name',
-                Value: position.name,
+                $Type               : 'UI.DataField',
+                Label               : 'Position name',
+                Value               : position.name,
                 @Common.FieldControl: #ReadOnly
             },
             {
@@ -68,6 +73,11 @@ annotate service.SpaceFarers with @(
             $Type: 'UI.DataField',
             Label: 'Name',
             Value: name,
+        },
+        {
+            $Type: 'UI.DataField',
+            Label: 'Email',
+            Value: email,
         },
         {
             $Type: 'UI.DataField',

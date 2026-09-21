@@ -74,6 +74,7 @@ The `Positions` value help is restricted in the same way. For example, when logg
 4. Verify that `Position name`, `Department name` and `Origin Planet` are display-only values.
 5. Change the position using the value help and save the draft.
 6. Activate/save the draft and verify that the record contains the selected position.
+7. Verify that the `Email` field is displayed and contains a valid email address.
 
 The Fiori edit flow uses drafts. Therefore, a create or update can first appear as a draft and is only written to the active data after the draft is saved/activated.
 
@@ -82,6 +83,7 @@ The Fiori edit flow uses drafts. Therefore, a create or update can first appear 
 Create a new spacefarer and verify the following:
 
 - `Name` cannot be empty.
+- `Email` must contain a valid email address.
 - `Position ID` is required.
 - `Stardust Collection` cannot be negative.
 - `Wormhole Navigation` must be between `0` and `10`.
@@ -93,6 +95,15 @@ Create a new spacefarer and verify the following:
 ### Update validation
 
 Edit an existing record and verify that the same numeric and suit-color rules are enforced. When the position changes, the related origin planet is recalculated by the service.
+
+### Notifications
+
+The service sends notifications through the configured `notifications` service:
+
+- after a spacefarer is created, a welcome notification is sent to the spacefarer's email address;
+- before a spacefarer is deleted, the existing record is loaded by ID and a goodbye notification is sent to its email address.
+
+The email address used for testing comes from the `Email` field of the spacefarer record.
 
 ## Service endpoint
 
@@ -155,4 +166,3 @@ http://localhost:4004/galacticreportpage/index.html
 #### Pre-requisites:
 
 1. Active NodeJS LTS (Long Term Support) version and associated supported NPM version.  (See https://nodejs.org)
-

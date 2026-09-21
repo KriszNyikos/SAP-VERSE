@@ -13,7 +13,9 @@ export const validateSpaceFarerCreate = async (
     return req.error(400, "Request data is missing");
   }
 
-console.log(req.data)
+  if (!req.data.email || req.data.email.trim() === "") {
+    return req.error(400, "email must be set during creation");
+  }
 
   if (!req.data.name || req.data.name.trim() === "") {
     return req.error(400, "name must be set during creation");
@@ -84,7 +86,9 @@ export const validateSpaceFarerUpdate = async (
     return req.error(400, "Request data is missing");
   }
 
-  console.log(req.data)
+  if (!req.data.email || req.data.email.trim() === "") {
+    return req.error(400, "email cannot be empty");
+  }
 
   if (!req.data.name || req.data.name.trim() === "") {
     return req.error(400, "name cannot be empty");
