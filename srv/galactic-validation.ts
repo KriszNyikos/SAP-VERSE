@@ -13,18 +13,6 @@ export const validateSpaceFarerCreate = async (
     return req.error(400, "Request data is missing");
   }
 
-  if (!req.data.email || req.data.email.trim() === "") {
-    return req.error(400, "email must be set during creation");
-  }
-
-  if (!req.data.name || req.data.name.trim() === "") {
-    return req.error(400, "name must be set during creation");
-  }
-
-  if (!req.data.position_ID) {
-    return req.error(400, "position must be set during creation");
-  }
-
   if (req.data.stardustCollection != null && req.data.stardustCollection < 0) {
     return req.error(400, "stardustCollection must be non-negative");
   }
@@ -84,14 +72,6 @@ export const validateSpaceFarerUpdate = async (
 ) => {
   if (!req.data) {
     return req.error(400, "Request data is missing");
-  }
-
-  if (!req.data.email || req.data.email.trim() === "") {
-    return req.error(400, "email cannot be empty");
-  }
-
-  if (!req.data.name || req.data.name.trim() === "") {
-    return req.error(400, "name cannot be empty");
   }
 
   if (req.data.stardustCollection != null && req.data.stardustCollection < 0) {
