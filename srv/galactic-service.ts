@@ -55,6 +55,36 @@ export default class GalacticService extends cds.ApplicationService {
       },
     );
 
+    this.on("SAVE", "SpaceFarers", async (req, next) => {
+      try {
+        return await next();
+      } catch (error) {
+        const err = error as { message?: string; code?: string };
+        if (
+          err.message &&
+          (err.message.includes("UNIQUE constraint failed") ||
+            err.code === "SQLITE_CONSTRAINT")
+        ) {
+          if (err.message.includes("name")) {
+            req.error(
+              400,
+              "This name is already registered.",
+              "in/name",
+            );
+          } else if (err.message.includes("email")) {
+            req.error(
+              400,
+              "This email address is already registered.",
+              "in/email",
+            );
+          } else {
+            req.error(400, "The supplied value already exists and must be unique.");
+          }
+        }
+        throw error;
+      }
+    });
+
     return super.init();
   }
 }
