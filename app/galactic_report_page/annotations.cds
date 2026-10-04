@@ -58,7 +58,8 @@ annotate service.SpaceFarers with @(
             {
                 $Type: 'UI.DataField',
                 Label: 'Origin Planet',
-                Value: originPlanet.name,
+                Value: position.department.planet.name,
+                @Common.FieldControl: #ReadOnly
             },
         ],
     },
@@ -97,7 +98,7 @@ annotate service.SpaceFarers with @(
         {
             $Type: 'UI.DataField',
             Label: 'Origin Planet',
-            Value: originPlanet.name,
+            Value: position.department.planet.name,
         },
         {
             $Type: 'UI.DataField',
@@ -119,7 +120,7 @@ annotate service.SpaceFarers with {
         Parameters    : [
             {
                 $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: originPlanet_ID,
+                LocalDataProperty: position.department.planet.ID,
                 ValueListProperty: 'ID',
             },
             {

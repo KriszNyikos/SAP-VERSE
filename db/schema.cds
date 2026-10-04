@@ -7,7 +7,6 @@ entity SpaceFarers: cuid, managed {
         email: String @assert.format: 'email' @mandatory;
         stardustCollection : Integer default 0 @mandatory;
         wormholeNavigation : Integer @assert.range: [0,10] default 5 @mandatory;
-        originPlanet       : Association to Planets;
         position           : Association to Positions @mandatory;
         spaceSuitColor     : String(10) default 'WHITE';
 }

@@ -11,7 +11,7 @@ service GalacticService {
             'DELETE'
         ],
         to   : 'Analyst',
-        where: 'originPlanet.code = $user.planetCode'
+        where: 'position.department.planet.code = $user.planetCode'
     }]
     @odata.draft.enabled
     entity SpaceFarers     as projection on db.SpaceFarers;

@@ -63,8 +63,6 @@ export const validateSpaceFarerCreate = async (
   if (originPlanet === undefined) {
     return req.error(400, "Origin planet not found for the selected position");
   }
-
-  req.data.originPlanet_ID = originPlanet.ID;
 };
 
 export const validateSpaceFarerUpdate = async (
@@ -126,7 +124,5 @@ export const validateSpaceFarerUpdate = async (
         "Origin planet not found for the selected position",
       );
     }
-
-    req.data.originPlanet_ID = originPlanet.ID;
   }
 };
