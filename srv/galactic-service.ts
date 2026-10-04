@@ -1,8 +1,7 @@
 import cds from "@sap/cds";
 import { SpaceFarer } from "#cds-models/GalacticService";
 import {
-  validateSpaceFarerCreate,
-  validateSpaceFarerUpdate,
+  spaceFarerValidation,
 } from "./galactic-validation";
 
 type NotificationService = {
@@ -23,7 +22,7 @@ export default class GalacticService extends cds.ApplicationService {
       "CREATE",
       "SpaceFarers",
       async (req: cds.Request<SpaceFarer>) => {
-        return validateSpaceFarerCreate(req);
+        return spaceFarerValidation(req);
       },
     );
 
@@ -35,7 +34,7 @@ export default class GalacticService extends cds.ApplicationService {
       });
     });
 
-    this.before("UPDATE", "SpaceFarers", validateSpaceFarerUpdate);
+    this.before("UPDATE", "SpaceFarers", spaceFarerValidation);
 
     this.before(
       "DELETE",
