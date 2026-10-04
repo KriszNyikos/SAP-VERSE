@@ -8,13 +8,16 @@ service GalacticService {
             'READ',
             'CREATE',
             'UPDATE',
-            'DELETE'
+            'DELETE',
+            'addStardust'
         ],
         to   : 'Analyst',
         where: 'position.department.planet.code = $user.planetCode'
     }]
     @odata.draft.enabled
-    entity SpaceFarers     as projection on db.SpaceFarers;
+    entity SpaceFarers     as projection on db.SpaceFarers actions {
+        action addStardust(stardust: Integer) returns SpaceFarers;
+    }
 
     @readonly
     entity Planets         as projection on db.Planets;

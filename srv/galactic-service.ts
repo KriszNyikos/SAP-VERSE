@@ -1,8 +1,6 @@
 import cds from "@sap/cds";
 import { SpaceFarer } from "#cds-models/GalacticService";
-import {
-  spaceFarerValidation,
-} from "./galactic-validation";
+import { spaceFarerValidation } from "./galactic-validation";
 
 type NotificationService = {
   notify(payload: {
@@ -65,11 +63,7 @@ export default class GalacticService extends cds.ApplicationService {
             err.code === "SQLITE_CONSTRAINT")
         ) {
           if (err.message.includes("name")) {
-            req.error(
-              400,
-              "This name is already registered.",
-              "in/name",
-            );
+            req.error(400, "This name is already registered.", "in/name");
           } else if (err.message.includes("email")) {
             req.error(
               400,
@@ -77,10 +71,36 @@ export default class GalacticService extends cds.ApplicationService {
               "in/email",
             );
           } else {
-            req.error(400, "The supplied value already exists and must be unique.");
+            req.error(
+              400,
+              "The supplied value already exists and must be unique.",
+            );
           }
         }
         throw error;
+      }
+    });
+
+    this.on("addStardust", "SpaceFarers", async (req, next) => {
+      const { stardust } = req.data;
+      const { ID } = req.params[0];
+
+      if (!ID || typeof stardust !== "number") {
+        req.error(400, "Invalid request data.");
+      }
+      const spaceFarer = (await SELECT.one
+        .from("galactic.adventure.SpaceFarers")
+        .where({ ID })) as SpaceFarer | undefined;
+
+      if (!spaceFarer) {
+        req.error(404, "SpaceFarer not found.");
+      } else {
+        spaceFarer.stardustCollection += stardust;
+        await UPDATE("galactic.adventure.SpaceFarers")
+          .set({ stardustCollection: spaceFarer.stardustCollection })
+          .where({ ID });
+
+        return spaceFarer;
       }
     });
 

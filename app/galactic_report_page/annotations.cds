@@ -56,9 +56,9 @@ annotate service.SpaceFarers with @(
                 Value: position.department.name,
             },
             {
-                $Type: 'UI.DataField',
-                Label: 'Origin Planet',
-                Value: position.department.planet.name,
+                $Type               : 'UI.DataField',
+                Label               : 'Origin Planet',
+                Value               : position.department.planet.name,
                 @Common.FieldControl: #ReadOnly
             },
         ],
@@ -109,6 +109,11 @@ annotate service.SpaceFarers with @(
             $Type: 'UI.DataField',
             Label: 'Department',
             Value: position.department.name,
+        },
+        {
+            $Type : 'UI.DataFieldForAction',
+            Action: 'GalacticService.addStardust',
+            Label : 'Add stardust',
         },
     ],
 );
