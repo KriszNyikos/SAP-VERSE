@@ -3,14 +3,15 @@ using { cuid, managed } from '@sap/cds/common';
 namespace galactic.adventure;
 
 entity SpaceFarers: cuid, managed {
-        name : String;
-        email: String @assert.format: 'email';
-        stardustCollection : Integer default 0 ;
-        wormholeNavigation : Integer @assert.range: [0,10] default 5;
-        originPlanet       : Association to Planets;
-        position           : Association to Positions;
+        name : String @mandatory;
+        email: String @assert.format: 'email' @mandatory;
+        stardustCollection : Integer default 0 @mandatory;
+        wormholeNavigation : Integer @assert.range: [0,10] default 5 @mandatory;
+        position           : Association to Positions @mandatory;
         spaceSuitColor     : String(10) default 'WHITE';
 }
+
+annotate SpaceFarers with @assert.unique: { email: [email], name: [name] };
 
 entity Planets: cuid {
         name : String;
