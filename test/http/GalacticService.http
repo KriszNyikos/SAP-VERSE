@@ -1,0 +1,145 @@
+@server=http://localhost:4004
+@username=alice
+@password=
+
+
+### SpaceFarers
+# @name SpaceFarers_GET
+GET {{server}}/odata/v4/galactic/SpaceFarers
+Authorization: Basic {{username}}:{{password}}
+
+### SpaceFarers
+# @name SpaceFarers_GET Search
+GET {{server}}/odata/v4/galactic/SpaceFarers?$search="SpaceFarer 32"
+Authorization: Basic {{username}}:{{password}}
+
+
+### SpaceFarers Drafts GET
+# @name SpaceFarers_Drafts_GET
+GET {{server}}/odata/v4/galactic/SpaceFarers?$filter=(IsActiveEntity eq false)
+Authorization: Basic {{username}}:{{password}}
+
+
+### SpaceFarers Draft POST
+# @name SpaceFarers_Draft_POST
+POST {{server}}/odata/v4/galactic/SpaceFarers
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "name": "name-145215",
+  "email": "email-145215",
+  "stardustCollection": 64,
+  "wormholeNavigation": 6,
+  "originPlanet": {
+    "ID": "39772608-a633-4de8-abdc-58d776c0761a"
+  },
+  "position": {
+    "ID": "7168682f-f25c-4ecb-84e5-2b281878438b"
+  },
+  "spaceSuitColor_code": "RED"
+}
+
+
+### Result from POST request above
+@draftID={{SpaceFarers_Draft_POST.response.body.$.ID}}
+
+
+### SpaceFarers Draft PATCH
+# @name SpaceFarers_Draft_Patch
+PATCH {{server}}/odata/v4/galactic/SpaceFarers(ID={{draftID}},IsActiveEntity=false)
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "name": "name-145215",
+  "email": "email-145215",
+  "stardustCollection": 64,
+  "wormholeNavigation": 6,
+  "originPlanet": {
+    "ID": "39772608-a633-4de8-abdc-58d776c0761a"
+  },
+  "position": {
+    "ID": "7168682f-f25c-4ecb-84e5-2b281878438b"
+  },
+  "spaceSuitColor_code": "WHITE"
+}
+
+
+### SpaceFarers Draft Prepare
+# @name SpaceFarers_Draft_Prepare
+POST {{server}}/odata/v4/galactic/SpaceFarers(ID={{draftID}},IsActiveEntity=false)/GalacticService.draftPrepare
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{}
+
+
+### SpaceFarers Draft Activate
+# @name SpaceFarers_Draft_Activate
+POST {{server}}/odata/v4/galactic/SpaceFarers(ID={{draftID}},IsActiveEntity=false)/GalacticService.draftActivate
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{}
+
+
+### Planets
+# @name Planets_GET
+GET {{server}}/odata/v4/galactic/Planets
+Authorization: Basic {{username}}:{{password}}
+
+
+### Positions
+# @name Positions_GET
+GET {{server}}/odata/v4/galactic/Positions
+Authorization: Basic {{username}}:{{password}}
+
+
+### Positions
+# @name Positions_POST
+POST {{server}}/odata/v4/galactic/Positions
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "7168682f-f25c-4ecb-84e5-2b281878438b",
+  "name": "name-7168682",
+  "department": {
+    "ID": "2915684a-f242-4923-882d-8ce9f1f5fd5e"
+  }
+}
+
+
+### Positions
+# @name Positions_PATCH
+PATCH {{server}}/odata/v4/galactic/Positions/7168682f-f25c-4ecb-84e5-2b281878438b
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "7168682f-f25c-4ecb-84e5-2b281878438b",
+  "name": "name-7168682",
+  "department": {
+    "ID": "2915684a-f242-4923-882d-8ce9f1f5fd5e"
+  }
+}
+
+
+### Positions
+# @name Positions_DELETE
+DELETE {{server}}/odata/v4/galactic/Positions/7168682f-f25c-4ecb-84e5-2b281878438b
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+
+### Departments
+# @name Departments_GET
+GET {{server}}/odata/v4/galactic/Departments
+Authorization: Basic {{username}}:{{password}}
+
+
+### SpaceSuitColors
+# @name SpaceSuitColors_GET
+GET {{server}}/odata/v4/galactic/SpaceSuitColors
+Authorization: Basic {{username}}:{{password}}
